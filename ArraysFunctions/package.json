@@ -1,0 +1,15 @@
+{
+  "name": "arraysfunctions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "vetoresAvancado.js",
+  "scripts": {
+    "test": "node index.test | tap-spec"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tap-spec": "^5.0.0",
+    "tape": "^5.2.2"
+  }
+}
