@@ -13,7 +13,7 @@
 
 */
 const constTamanhoTotal = 10;
-var vetor = new Array();
+var vetor = new Array(constTamanhoTotal);
 var controleTamanhoOcupado = 0;
 
 function verificarVetorCheio(){
@@ -27,53 +27,82 @@ function verificarVetorCheio(){
     // condicao ? respostaVerdadeira : respostaFalsa;
     // ? - > retorna duas condicoes
     // && -> somente com verdadeiro
-    return (vetor.length < constTamanhoTotal) ? true : false;
+    return (controleTamanhoOcupado < constTamanhoTotal) ? true : false;
 
 }
 
-function erroVetorCheio(){
-    console.log("O vetor esta cheio !!!! ");
+function adicionarValorVetor(posicao, valor){
+    vetor[posicao] = valor;
+    controleTamanhoOcupado++;
 }
 
 function adicionarValorFinalVetor(valor){
-    verificarVetorCheio() ? vetor.push(valor) : erroVetorCheio();
+
+    if(verificarVetorCheio()){
+        adicionarValorVetor(controleTamanhoOcupado, valor);
+    }else{
+        console.log("O vetor esta cheio !!!! ");
+    }
+  
 }
 
 function adicionarValorInicioVetor(valor){
-    verificarVetorCheio() ? vetor.unshift(valor) : erroVetorCheio();
+     //[0 , 1 , 2 ,3 , 4, 5] - index
+    // [1 , 2 , 3 ,4 , 4 ]
+    // realocar [ 1, 1 , 2 , 3 , 4 , 5];
+    if(verificarVetorCheio()){
+
+        for(var i = controleTamanhoOcupado; i >= 0; i--){
+            vetor[i] = vetor[i - 1];
+        }
+
+        adicionarValorVetor(0, valor);
+    }
+
 }
 
 function verificarQuantidadeValoresVetor(){
-    return vetor.length;
+    return controleTamanhoOcupado;
 }
 
 function mostrarValoresDoVetor(){
     console.log(`vetor ${vetor}`);
-    console.log(`Tamanho Ocupado ${vetor.length}`);
+    console.log(`Tamanho Ocupado ${controleTamanhoOcupado}`);
 
-    return vetor.toString();
+    var vetorResultado = [];
+
+    for(i = 0; i < controleTamanhoOcupado; i++){
+        vetorResultado[i] = vetor[i];
+    }
+
+    return vetorResultado.toString();
 }
 
 function obterValorUltimaPosicao(){
-    return vetor[vetor.length - 1];
+    return vetor[controleTamanhoOcupado - 1];
 }
 
 function obterValorQualquerPosicao(posicao){
-    return posicao < vetor.length ? vetor[posicao] : null;
+    return posicao < controleTamanhoOcupado ? vetor[posicao] : null;
 }
 
 function retornaPosicaoDoValorNoVetor(valorBusca){
 
-    return vetor.indexOf(valorBusca);
+    let posicaoEncontrada = null;
+
+    for(var i = 0; i < controleTamanhoOcupado; i++){
+         (vetor[i] == valorBusca) && (posicaoEncontrada = i);
+    }
+
+    return posicaoEncontrada;
 
 }
 
 function removeUltimoValorVetor(){
-    vetor.length > 0 && vetor.pop(); 
-}
-
-function removerPrimeiroValorVetor(){
-    vetor.length > 0 && vetor.shift();
+    if(controleTamanhoOcupado > 0){
+        vetor[controleTamanhoOcupado - 1] = undefined;
+        controleTamanhoOcupado--; 
+    }
 }
 
 function removerQualquerValorVetor(valorBusca){
@@ -83,23 +112,26 @@ function removerQualquerValorVetor(valorBusca){
     if(posicao != null){
         // [1, 2, 3 ,4] - REMOVER O 2
         // [1, 3, 4]
-        for(var i = posicao; i < vetor.length; i++){
+        for(var i = posicao; i < controleTamanhoOcupado; i++){
             vetor[i] = vetor[i + 1];
         }
+
+        controleTamanhoOcupado--;
+
     }
 
 }
 
 function removerQualquerPosicaoVetor(posicao){
 
-    if(posicao >= 0 && posicao < vetor.length){
+    if(posicao >= 0 && posicao < controleTamanhoOcupado){
         // [1, 2, 3 ,4] - REMOVER O 2
         // [1, 3, 4]
-        for(var i = posicao; i < vetor.length; i++){
+        for(var i = posicao; i < controleTamanhoOcupado; i++){
             vetor[i] = vetor[i + 1];
         }
 
-   
+        controleTamanhoOcupado--;
 
     }
 
@@ -111,15 +143,14 @@ module.exports =
     verificarVetorCheio,
     adicionarValorFinalVetor,
     mostrarValoresDoVetor,
-    removerQualquerPosicaoVetor,
-    removerPrimeiroValorVetor
+    removerQualquerPosicaoVetor
 
 }
 
 
 /*
 mostrarValoresDoVetor();
-
+adicionarValorFinalVetor(10);
 adicionarValorFinalVetor(20);
 adicionarValorFinalVetor(30);
 adicionarValorFinalVetor(40);
