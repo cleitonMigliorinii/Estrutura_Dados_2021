@@ -107,7 +107,6 @@ li{
 }
 
 #pilha{
-    border: 1px solid #E5E5E5;
     margin-top: 10px;
     width: 80px;
     margin-left: calc(50% - 40px) ;
@@ -118,4 +117,14 @@ li{
     font-size: 25px;
     padding: 15px 10px;
     border: 1px solid #E5E5E5;
+}
+
+#pilha div:first-child{
+    background-color: #418f2e;
+    color: white;
+}
+
+#pilha div:last-child{
+    background-color: #9d3343;
+    color:white;
 }

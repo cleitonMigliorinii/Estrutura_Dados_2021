@@ -31,7 +31,7 @@
                 <div id="control-button">
 
                     <button type="button" class="btnPush"
-                        onclick="pilha.push(10)">
+                        onclick="pilha.push()">
                         Push
                     </button>
                     <button type="button" class="btnPop"
@@ -57,22 +57,13 @@
                 <section class="bodyVisualization">
 
                     <div id="pilha">
-                        <div class="item">
-                            10
-                        </div>
-                        <div class="item">
-                            10
-                        </div>
-                        <div class="item">
-                            10
-                        </div>
-                        
+                        <!-- Conteudo gerado dinamicamente -->
                     </div>
                 </section>
 
                 <footer>
-                    <p>Tamanho : 5</p>
-                    <p>Objeto Topo : 10</p>
+                    <p>Tamanho : <span id="tamanhoPilha"> 0 </span></p>
+                    <p>Objeto Topo : <span id="topoPilha"></span></p>
                 </footer>
 
 
